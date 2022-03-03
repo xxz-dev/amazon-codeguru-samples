@@ -154,6 +154,29 @@ public class Main {
         }
     }
 
+    
+    // Bad
+    public void pathTraversa2(HttpServletRequest request) throws IOException {
+        javax.servlet.http.Cookie[] theCookies = request.getCookies();
+        String path = "";
+        if (theCookies != null) {
+            for (javax.servlet.http.Cookie theCookie : theCookies) {
+                if (theCookie.getName().equals("thePath")) {
+                    path = decode(theCookie.getValue(), "UTF-8");
+                    break;
+                }
+            }
+        }
+        if (!path.equals("")) {
+            String fileName = path + ".txt";
+            String decStr = new String(org.apache.commons.codec.binary.Base64.decodeBase64(
+                org.apache.commons.codec.binary.Base64.encodeBase64(fileName.getBytes())));
+            java.io.FileOutputStream fileOutputStream = new java.io.FileOutputStream(decStr);
+            java.io.FileDescriptor fd = fileOutputStream.getFD();
+            System.out.println(fd.toString());
+        }
+    }
+
     // Good
     public void pathTraversal2(HttpServletRequest request) throws IOException {
         javax.servlet.http.Cookie[] theCookies = request.getCookies();
