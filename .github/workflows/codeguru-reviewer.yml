@@ -21,7 +21,7 @@ jobs:
       uses: aws-actions/configure-aws-credentials@v1
       id: iam-role
       with:
-        role-to-assume: arn:aws:iam::048169001733:role/GuruGitHubCICDRole
+        role-to-assume: arn:aws:iam::013991436161:role/OIDCGitHubRole
         aws-region: us-west-2
 
     - uses: actions/checkout@v2
